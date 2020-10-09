@@ -32,7 +32,8 @@ func (p *HelloServiceImpl) Channel(stream pb.HelloService_ChannelServer) error {
 			return err
 		}
 
-		reply := &pb.String{Value: "hello:" + args.GetValue()}
+		reply := &pb.String{Value: "hello: " + args.GetValue()}
+		log.Println(reply)
 
 		/*
 			Dữ liệu trả về được  gửi đến client thông qua stream
