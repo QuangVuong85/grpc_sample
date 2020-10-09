@@ -18,7 +18,7 @@ func TestExecute(t *testing.T) {
 	// close resource before quit
 	defer executor.Close()
 
-	for i := 0; i < 3; i++ {
+	for i := 0; i < 30; i++ {
 		executor.Publish(mul, i)
 		executor.Publish(pow, i)
 		executor.Publish(sum, i, i+1)
