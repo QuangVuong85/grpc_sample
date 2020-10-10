@@ -18,17 +18,26 @@ Building grpc-gateway has caused many difficulties for developers such as the in
 </p>
   
 ## Run
+ - Build use script bash:
+ ```shell script
+    ./build.sh
+ ```
+ - Build use script bash:
+ ```shell script
+    Step 1: make
+    Step 2: make run-gateway
+    Step 3 (open terminal other): make run-services
+ ```
+ 
  - Run grpc-gateway
  ```shell script
-    cd ./grpc-gateway/gateway/api/proto/gen/grpc-gateway/src/pkg/main
-    go run main.go
+    cd ./build
+    ./grpc-gateway
  ```
- - Run service  
+ - Run services
  ```shell script
-    cd ./grpc-gateway/gateway/api/proto/script
-    ./build.sh
-    cd build
-    ./grpc_gateway
+    cd ./build
+    ./services
  ```
 
 ## Test

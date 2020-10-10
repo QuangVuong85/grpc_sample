@@ -23,7 +23,7 @@ import (
 
 	gw "grpc_sample/grpc-gateway/gateway/api/proto/gen/grpc-gateway/src/gen/pb-go"
 
-	_ "google.golang.org/genproto/googleapis/rpc/errdetails" // Pull in errdetails
+	_ "google.golang.org/genproto/googleapis/rpc/errdetails" // Pull in err details
 )
 
 const (
@@ -203,6 +203,7 @@ func incomingHeaderMatcher(key string) (string, bool) {
 	if isPermanentHTTPHeader(key) {
 		return runtime.MetadataPrefix + key, true
 	}
+
 	if isReserved(key) {
 		return "X-" + key, true
 	}
@@ -230,6 +231,7 @@ func getResponseHeaders(cfg *viper.Viper) map[string]string {
 		if strings.HasPrefix(key, headersPrefix+ViperKeySepChar) {
 			value := cfg.GetString(key)
 			header := strings.TrimPrefix(key, headersPrefix+ViperKeySepChar)
+
 			// headers are case insensetive
 			m[header] = value
 		}
@@ -254,6 +256,7 @@ func SetupMux(ctx context.Context, cfg proxyConfig) *http.ServeMux {
 	logrus.Infof("Proxying requests to gRPC service at '%s'", cfg.backend)
 
 	opts := []grpc.DialOption{grpc.WithInsecure()}
+
 	// If you get a compilation error that gw.RegisterServiceAHandlerFromEndpoint
 	// does not exist, it's because you haven't added any google.api.http annotations
 	// to your proto. Add some!
@@ -269,7 +272,15 @@ func SetupMux(ctx context.Context, cfg proxyConfig) *http.ServeMux {
 
 	prefix := sanitizeApiPrefix(cfg.apiPrefix)
 	logrus.Infof("API prefix is: %s", prefix)
-	mux.Handle(prefix, handlers.CustomLoggingHandler(os.Stdout, http.StripPrefix(prefix[:len(prefix)-1], addRespHeaders(cfg, gwmux)), formatter))
+	mux.Handle(
+		prefix,
+		handlers.CustomLoggingHandler(
+			os.Stdout,
+			http.StripPrefix(prefix[:len(prefix)-1], addRespHeaders(cfg, gwmux)),
+			formatter,
+		),
+	)
+
 	return mux
 }
 
@@ -320,7 +331,7 @@ func SignalRunner(runner, stopper func()) {
 		runner()
 	}()
 
-	logrus.Info("hit Ctrl-C to shutdown")
+	logrus.Info("Hit Ctrl-C to shutdown")
 	select {
 	case <-signals:
 		stopper()
@@ -352,7 +363,7 @@ func main() {
 
 	SignalRunner(
 		func() {
-			logrus.Infof("launching http server on %v", server.Addr)
+			logrus.Infof("Launching http server on %v", server.Addr)
 			if err := server.ListenAndServe(); err != nil {
 				logrus.Fatalf("Could not start http server: %v", err)
 			}

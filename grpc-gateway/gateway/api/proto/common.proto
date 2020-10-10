@@ -12,4 +12,5 @@ message MessagePing {
 message MessagePong {
   int64 timestamp = 1;
   string serviceName = 2;
+  string message = 3;
 }

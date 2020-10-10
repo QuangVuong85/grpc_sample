@@ -26,6 +26,7 @@ func (service *ServiceB) Ping(ctx context.Context, msgPing *service_proto.Messag
 	log.Info(msgPing)
 	return &service_proto.MessagePong{
 		Timestamp:   getTimestamp(),
-		ServiceName: "Service B! Wellcome",
+		ServiceName: "Service B!",
+		Message:     "Welcome!",
 	}, nil
 }

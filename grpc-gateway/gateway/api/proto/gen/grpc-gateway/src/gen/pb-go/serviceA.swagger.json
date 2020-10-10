@@ -53,6 +53,9 @@
         },
         "serviceName": {
           "type": "string"
+        },
+        "message": {
+          "type": "string"
         }
       }
     },
