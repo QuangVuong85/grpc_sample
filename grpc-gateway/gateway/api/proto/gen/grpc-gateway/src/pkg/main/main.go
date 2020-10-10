@@ -238,6 +238,7 @@ func getResponseHeaders(cfg *viper.Viper) map[string]string {
 	}
 	return m
 }
+
 func SetupMux(ctx context.Context, cfg proxyConfig) *http.ServeMux {
 
 	formatter := logFormatter(cfg)
@@ -272,6 +273,7 @@ func SetupMux(ctx context.Context, cfg proxyConfig) *http.ServeMux {
 
 	prefix := sanitizeApiPrefix(cfg.apiPrefix)
 	logrus.Infof("API prefix is: %s", prefix)
+
 	mux.Handle(
 		prefix,
 		handlers.CustomLoggingHandler(
@@ -321,8 +323,8 @@ func SetupViper() *viper.Viper {
 	return v
 }
 
-// SignalRunner runs a runner function until an interrupt signal is received, at which point it
-// will call stopper.
+// SignalRunner runs a runner function until an interrupt signal is received,
+// at which point it will call stopper.
 func SignalRunner(runner, stopper func()) {
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt, os.Kill)

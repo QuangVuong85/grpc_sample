@@ -16,11 +16,9 @@ clean:
 	sleep 1
 
 run-gateway:
-	clear && \
 	cd build && \
 	./grpc-gateway
 
 run-services:
-	clear && \
 	cd build && \
 	./services
