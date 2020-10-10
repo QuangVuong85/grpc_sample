@@ -283,6 +283,8 @@ func SetupMux(ctx context.Context, cfg proxyConfig) *http.ServeMux {
 		),
 	)
 
+	logrus.Println(mux)
+
 	return mux
 }
 
@@ -319,7 +321,11 @@ func SetupViper() *viper.Viper {
 	}
 
 	v := viper.GetViper()
-	bindEnvVars(v, strings.NewReplacer(EnvVarSepChar, ViperKeySepChar), strings.ToUpper("ServiceA"), ResponseHeaders)
+	bindEnvVars(v,
+		strings.NewReplacer(EnvVarSepChar, ViperKeySepChar),
+		strings.ToUpper("ServiceA"),
+		ResponseHeaders,
+	)
 	return v
 }
 
@@ -373,5 +379,6 @@ func main() {
 		func() {
 			shutdown, _ := context.WithTimeout(ctx, 10*time.Second)
 			server.Shutdown(shutdown)
-		})
+		},
+	)
 }
