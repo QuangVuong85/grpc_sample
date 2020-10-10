@@ -58,13 +58,13 @@ type proxyConfig struct {
 }
 
 func logFormatter(cfg proxyConfig) handlers.LogFormatter {
-
 	// Setup logrus
 	logrus.SetFormatter(&logrus.JSONFormatter{
 		FieldMap: logrus.FieldMap{
 			logrus.FieldKeyTime: "@timestamp",
 		},
 	})
+
 	level, err := logrus.ParseLevel(cfg.logLevel)
 	if err != nil {
 		logrus.SetLevel(logrus.InfoLevel)
@@ -116,7 +116,12 @@ func logFormatter(cfg proxyConfig) handlers.LogFormatter {
 			}
 		}
 
-		logrus.WithFields(fields).WithTime(params.TimeStamp).Infof("%s %s %d", params.Request.Method, uri, params.StatusCode)
+		logrus.WithFields(fields).WithTime(params.TimeStamp).Infof(
+			"%s %s %d",
+			params.Request.Method,
+			uri,
+			params.StatusCode,
+		)
 	}
 }
 
@@ -138,9 +143,11 @@ func addRespHeaders(cfg proxyConfig, handler http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Credentials", cfg.corsAllowCredentials)
 		w.Header().Set("Access-Control-Allow-Methods", cfg.corsAllowMethods)
 		w.Header().Set("Access-Control-Allow-Headers", cfg.corsAllowHeaders)
+
 		if req.Method == "OPTIONS" && req.Header.Get("Access-Control-Request-Method") != "" {
 			return
 		}
+
 		handler.ServeHTTP(w, req)
 	})
 }
