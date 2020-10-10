@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/prometheus/common/log"
 	service_proto "grpc_sample/grpc-gateway/service/pkg/api"
+	"grpc_sample/grpc-gateway/service/pkg/utils"
 	"time"
 )
 
@@ -27,6 +28,6 @@ func (service *ServiceB) Ping(ctx context.Context, msgPing *service_proto.Messag
 	return &service_proto.MessagePong{
 		Timestamp:   getTimestamp(),
 		ServiceName: "Service B!",
-		Message:     "Welcome!",
+		Message:     "Welcome to service B! IPv4: " + string(utils.GetLocalIP()),
 	}, nil
 }
