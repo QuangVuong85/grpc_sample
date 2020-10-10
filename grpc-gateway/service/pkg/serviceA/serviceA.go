@@ -25,10 +25,10 @@ func getTimestamp() int64 {
 
 //Ping ping
 func (service *ServiceA) Ping(ctx context.Context, msgPing *service_proto.MessagePing) (*service_proto.MessagePong, error) {
-	log.Info(msgPing)
+	log.Info(msgPing.Timestamp)
 	return &service_proto.MessagePong{
 		Timestamp:   getTimestamp(),
 		ServiceName: "Service A!",
-		Message: "Welcome to service A! IPv4: " + string(utils.GetLocalIP()),
+		Message:     "Welcome to service A! IPv4: " + string(utils.GetLocalIP()),
 	}, nil
 }
