@@ -2,31 +2,30 @@ package serviceB
 
 import (
 	"context"
+	"github.com/prometheus/common/log"
 	service_proto "grpc_sample/grpc-gateway/service/pkg/api"
 	"time"
-
-	"github.com/prometheus/common/log"
 )
 
-//ServiceB struct
+// ServiceB struct
 type ServiceB struct {
 }
 
-//NewServiceB create service
+// NewServiceB create service
 func NewServiceB() service_proto.ServiceBServer {
 	return &ServiceB{}
 }
 
-//getTimestamp get timestamp
+// getTimestamp get timestamp
 func getTimestamp() int64 {
 	return time.Now().UnixNano() / int64(time.Millisecond)
 }
 
-//Ping ping
+// Ping ping
 func (service *ServiceB) Ping(ctx context.Context, msgPing *service_proto.MessagePing) (*service_proto.MessagePong, error) {
 	log.Info(msgPing)
 	return &service_proto.MessagePong{
 		Timestamp:   getTimestamp(),
-		ServiceName: "service B",
+		ServiceName: "Service B! Wellcome",
 	}, nil
 }

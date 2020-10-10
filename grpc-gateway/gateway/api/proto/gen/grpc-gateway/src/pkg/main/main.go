@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/prometheus/common/log"
 	"io"
 	"net"
 	"net/http"
@@ -346,6 +347,8 @@ func main() {
 		apiPrefix:            cfg.GetString("proxy.api-prefix"),
 		responseHeaders:      getResponseHeaders(cfg),
 	})
+
+	log.Info(cfg.GetInt("proxy.port"))
 
 	addr := fmt.Sprintf(":%v", cfg.GetInt("proxy.port"))
 	server := &http.Server{Addr: addr, Handler: mux}

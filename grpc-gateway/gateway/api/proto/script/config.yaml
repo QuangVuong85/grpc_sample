@@ -8,4 +8,4 @@ proxy:
   port: 9000
   api-prefix: "/"
 swagger:
-  file: "*swagger.json"
+  file: "serviceA.swagger.json"

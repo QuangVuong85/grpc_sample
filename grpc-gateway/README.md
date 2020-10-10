@@ -25,8 +25,10 @@ Building grpc-gateway has caused many difficulties for developers such as the in
  ```
  - Run service  
  ```shell script
-    cd ./grpc-gateway/service/cmd/server
-    go run main.go
+    cd ./grpc-gateway/gateway/api/proto/script
+    ./build.sh
+    cd build
+    ./grpc_gateway
  ```
 
 ## Test
