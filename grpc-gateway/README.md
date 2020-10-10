@@ -36,15 +36,15 @@ Building grpc-gateway has caused many difficulties for developers such as the in
 - Test ServiceA
   
 ```sh
-$ curl -X GET "http://localhost:9000/core/serviceA/ping/999999"
-{"timestamp":"1560311912214","serviceName":"service A"}
+curl -X GET "http://localhost:9000/core/serviceA/ping/999"
+{"timestamp":"1602319774563","serviceName":"Service A! Wellcome"}
 ```
 
 - Test ServiceB
 
 ```sh
-curl -X GET "http://localhost:9000/core/serviceB/ping/999999"
-{"timestamp":"1560312187849","serviceName":"service B"}
+curl -X GET "http://localhost:9000/core/serviceB/ping/999"
+{"timestamp":"1602319782972","serviceName":"Service B! Wellcome"}
 ```
 
 ## Ref
