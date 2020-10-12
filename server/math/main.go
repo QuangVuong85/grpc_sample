@@ -12,7 +12,7 @@ import (
 
 type server struct{}
 
-func (s *server) Sum(ctx context.Context, req *math.SumRequest) (*math.SumResponse, error) {
+func (s *server) Sum(ctx context.Context, req *math.Request) (*math.SumResponse, error) {
 	a := req.GetA()
 	b := req.GetB()
 
@@ -23,19 +23,20 @@ func (s *server) Sum(ctx context.Context, req *math.SumRequest) (*math.SumRespon
 	}, nil
 }
 
-func (s *server) Mul(ctx context.Context, req *math.SumRequest) (*math.SumResponse, error) {
+func (s *server) Mul(ctx context.Context, req *math.Request) (*math.MulResponse, error) {
 	a := req.GetA()
 	b := req.GetB()
 
 	mul := a * b
 
-	return &math.SumResponse{
-		Sum: mul,
+	return &math.MulResponse{
+		Mul: mul,
 	}, nil
 }
 
 func main() {
-	ln, err := net.Listen("tcp", fmt.Sprintf(":%s", os.Getenv("GRPC_PORT")))
+	ln, err := net.Listen("tcp",
+		fmt.Sprintf(":%s", os.Getenv("GRPC_PORT")))
 	if err != nil {
 		log.Fatal(err)
 	}

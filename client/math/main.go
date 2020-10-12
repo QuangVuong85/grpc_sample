@@ -45,25 +45,21 @@ func init() {
 
 func sum(w http.ResponseWriter, r *http.Request) {
 	var body httpRequest
-
 	json.NewDecoder(r.Body).Decode(&body)
 	log.Println(r.Body)
 
 	ctxTimeout, cancel := context.WithTimeout(ctx, 5*time.Second)
-
 	defer cancel()
 
-	sum, err := c.Sum(ctxTimeout, &math.SumRequest{
+	sum, err := c.Sum(ctxTimeout, &math.Request{
 		A: body.A,
 		B: body.B,
 	})
 
 	if err != nil {
 		log.Println(err)
-
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("bad request"))
-
 		return
 	}
 
@@ -73,29 +69,25 @@ func sum(w http.ResponseWriter, r *http.Request) {
 
 func mul(w http.ResponseWriter, r *http.Request) {
 	var body httpRequest
-
 	params := r.URL.Query()
-	log.Println(params)
+	log.Println("params: ", params)
 	a, _ := strconv.ParseInt(params.Get("a"), 10, 32)
 	body.A = int32(a)
 	b, _ := strconv.ParseInt(params.Get("b"), 10, 32)
 	body.B = int32(b)
 
 	ctxTimeout, cancel := context.WithTimeout(ctx, 5*time.Second)
-
 	defer cancel()
 
-	mul, err := c.Mul(ctxTimeout, &math.SumRequest{
+	mul, err := c.Mul(ctxTimeout, &math.Request{
 		A: body.A,
 		B: body.B,
 	})
 
 	if err != nil {
 		log.Println(err)
-
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("bad request"))
-
 		return
 	}
 

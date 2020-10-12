@@ -24,7 +24,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type SumRequest struct {
+type Request struct {
 	A                    int32    `protobuf:"varint,1,opt,name=a,proto3" json:"a,omitempty"`
 	B                    int32    `protobuf:"varint,2,opt,name=b,proto3" json:"b,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -32,39 +32,39 @@ type SumRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *SumRequest) Reset()         { *m = SumRequest{} }
-func (m *SumRequest) String() string { return proto.CompactTextString(m) }
-func (*SumRequest) ProtoMessage()    {}
-func (*SumRequest) Descriptor() ([]byte, []int) {
+func (m *Request) Reset()         { *m = Request{} }
+func (m *Request) String() string { return proto.CompactTextString(m) }
+func (*Request) ProtoMessage()    {}
+func (*Request) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f139a3799a86a974, []int{0}
 }
 
-func (m *SumRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SumRequest.Unmarshal(m, b)
+func (m *Request) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Request.Unmarshal(m, b)
 }
-func (m *SumRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SumRequest.Marshal(b, m, deterministic)
+func (m *Request) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Request.Marshal(b, m, deterministic)
 }
-func (m *SumRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SumRequest.Merge(m, src)
+func (m *Request) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Request.Merge(m, src)
 }
-func (m *SumRequest) XXX_Size() int {
-	return xxx_messageInfo_SumRequest.Size(m)
+func (m *Request) XXX_Size() int {
+	return xxx_messageInfo_Request.Size(m)
 }
-func (m *SumRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_SumRequest.DiscardUnknown(m)
+func (m *Request) XXX_DiscardUnknown() {
+	xxx_messageInfo_Request.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SumRequest proto.InternalMessageInfo
+var xxx_messageInfo_Request proto.InternalMessageInfo
 
-func (m *SumRequest) GetA() int32 {
+func (m *Request) GetA() int32 {
 	if m != nil {
 		return m.A
 	}
 	return 0
 }
 
-func (m *SumRequest) GetB() int32 {
+func (m *Request) GetB() int32 {
 	if m != nil {
 		return m.B
 	}
@@ -110,24 +110,65 @@ func (m *SumResponse) GetSum() int32 {
 	return 0
 }
 
+type MulResponse struct {
+	Mul                  int32    `protobuf:"varint,1,opt,name=mul,proto3" json:"mul,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *MulResponse) Reset()         { *m = MulResponse{} }
+func (m *MulResponse) String() string { return proto.CompactTextString(m) }
+func (*MulResponse) ProtoMessage()    {}
+func (*MulResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f139a3799a86a974, []int{2}
+}
+
+func (m *MulResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MulResponse.Unmarshal(m, b)
+}
+func (m *MulResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MulResponse.Marshal(b, m, deterministic)
+}
+func (m *MulResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MulResponse.Merge(m, src)
+}
+func (m *MulResponse) XXX_Size() int {
+	return xxx_messageInfo_MulResponse.Size(m)
+}
+func (m *MulResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MulResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MulResponse proto.InternalMessageInfo
+
+func (m *MulResponse) GetMul() int32 {
+	if m != nil {
+		return m.Mul
+	}
+	return 0
+}
+
 func init() {
-	proto.RegisterType((*SumRequest)(nil), "math.SumRequest")
+	proto.RegisterType((*Request)(nil), "math.Request")
 	proto.RegisterType((*SumResponse)(nil), "math.SumResponse")
+	proto.RegisterType((*MulResponse)(nil), "math.MulResponse")
 }
 
 func init() { proto.RegisterFile("math.proto", fileDescriptor_f139a3799a86a974) }
 
 var fileDescriptor_f139a3799a86a974 = []byte{
-	// 141 bytes of a gzipped FileDescriptorProto
+	// 160 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xca, 0x4d, 0x2c, 0xc9,
-	0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x01, 0xb1, 0x95, 0x34, 0xb8, 0xb8, 0x82, 0x4b,
-	0x73, 0x83, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0x78, 0xb8, 0x18, 0x13, 0x25, 0x18, 0x15,
-	0x18, 0x35, 0x58, 0x83, 0x18, 0x13, 0x41, 0xbc, 0x24, 0x09, 0x26, 0x08, 0x2f, 0x49, 0x49, 0x9e,
-	0x8b, 0x1b, 0xac, 0xb2, 0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55, 0x48, 0x80, 0x8b, 0xb9, 0xb8, 0x34,
-	0x17, 0xaa, 0x18, 0xc4, 0x34, 0x4a, 0xe2, 0x62, 0xf1, 0x4d, 0x2c, 0xc9, 0x10, 0xd2, 0xe1, 0x62,
-	0x0e, 0x2e, 0xcd, 0x15, 0x12, 0xd0, 0x03, 0x5b, 0x86, 0x30, 0x5d, 0x4a, 0x10, 0x49, 0x04, 0x62,
-	0x8a, 0x12, 0x03, 0x48, 0xb5, 0x6f, 0x69, 0x0e, 0x91, 0xaa, 0x93, 0xd8, 0xc0, 0x6e, 0x37, 0x06,
-	0x04, 0x00, 0x00, 0xff, 0xff, 0x64, 0x47, 0x10, 0x1d, 0xc9, 0x00, 0x00, 0x00,
+	0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x01, 0xb1, 0x95, 0x54, 0xb9, 0xd8, 0x83, 0x52,
+	0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0x78, 0xb8, 0x18, 0x13, 0x25, 0x18, 0x15, 0x18, 0x35, 0x58,
+	0x83, 0x18, 0x13, 0x41, 0xbc, 0x24, 0x09, 0x26, 0x08, 0x2f, 0x49, 0x49, 0x9e, 0x8b, 0x3b, 0xb8,
+	0x34, 0x37, 0x28, 0xb5, 0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55, 0x48, 0x80, 0x8b, 0xb9, 0xb8, 0x34,
+	0x17, 0xaa, 0x18, 0xc4, 0x04, 0x29, 0xf0, 0x2d, 0xcd, 0x41, 0x56, 0x90, 0x5b, 0x9a, 0x03, 0x53,
+	0x90, 0x5b, 0x9a, 0x63, 0x14, 0xc3, 0xc5, 0xe2, 0x9b, 0x58, 0x92, 0x21, 0xa4, 0xc9, 0xc5, 0x1c,
+	0x5c, 0x9a, 0x2b, 0xc4, 0xab, 0x07, 0x76, 0x0a, 0xd4, 0x6e, 0x29, 0x41, 0x08, 0x17, 0xc9, 0x0e,
+	0x25, 0x06, 0x90, 0x52, 0xdf, 0xd2, 0x1c, 0x1c, 0x4a, 0x91, 0x6c, 0x53, 0x62, 0x48, 0x62, 0x03,
+	0xfb, 0xc9, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x36, 0x77, 0x07, 0xb8, 0xe1, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -142,8 +183,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MathClient interface {
-	Sum(ctx context.Context, in *SumRequest, opts ...grpc.CallOption) (*SumResponse, error)
-	Mul(ctx context.Context, in *SumRequest, opts ...grpc.CallOption) (*SumResponse, error)
+	Sum(ctx context.Context, in *Request, opts ...grpc.CallOption) (*SumResponse, error)
+	Mul(ctx context.Context, in *Request, opts ...grpc.CallOption) (*MulResponse, error)
 }
 
 type mathClient struct {
@@ -154,7 +195,7 @@ func NewMathClient(cc *grpc.ClientConn) MathClient {
 	return &mathClient{cc}
 }
 
-func (c *mathClient) Sum(ctx context.Context, in *SumRequest, opts ...grpc.CallOption) (*SumResponse, error) {
+func (c *mathClient) Sum(ctx context.Context, in *Request, opts ...grpc.CallOption) (*SumResponse, error) {
 	out := new(SumResponse)
 	err := c.cc.Invoke(ctx, "/math.Math/Sum", in, out, opts...)
 	if err != nil {
@@ -163,8 +204,8 @@ func (c *mathClient) Sum(ctx context.Context, in *SumRequest, opts ...grpc.CallO
 	return out, nil
 }
 
-func (c *mathClient) Mul(ctx context.Context, in *SumRequest, opts ...grpc.CallOption) (*SumResponse, error) {
-	out := new(SumResponse)
+func (c *mathClient) Mul(ctx context.Context, in *Request, opts ...grpc.CallOption) (*MulResponse, error) {
+	out := new(MulResponse)
 	err := c.cc.Invoke(ctx, "/math.Math/Mul", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -174,18 +215,18 @@ func (c *mathClient) Mul(ctx context.Context, in *SumRequest, opts ...grpc.CallO
 
 // MathServer is the server API for Math service.
 type MathServer interface {
-	Sum(context.Context, *SumRequest) (*SumResponse, error)
-	Mul(context.Context, *SumRequest) (*SumResponse, error)
+	Sum(context.Context, *Request) (*SumResponse, error)
+	Mul(context.Context, *Request) (*MulResponse, error)
 }
 
 // UnimplementedMathServer can be embedded to have forward compatible implementations.
 type UnimplementedMathServer struct {
 }
 
-func (*UnimplementedMathServer) Sum(ctx context.Context, req *SumRequest) (*SumResponse, error) {
+func (*UnimplementedMathServer) Sum(ctx context.Context, req *Request) (*SumResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Sum not implemented")
 }
-func (*UnimplementedMathServer) Mul(ctx context.Context, req *SumRequest) (*SumResponse, error) {
+func (*UnimplementedMathServer) Mul(ctx context.Context, req *Request) (*MulResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Mul not implemented")
 }
 
@@ -194,7 +235,7 @@ func RegisterMathServer(s *grpc.Server, srv MathServer) {
 }
 
 func _Math_Sum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SumRequest)
+	in := new(Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -206,13 +247,13 @@ func _Math_Sum_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: "/math.Math/Sum",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathServer).Sum(ctx, req.(*SumRequest))
+		return srv.(MathServer).Sum(ctx, req.(*Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Math_Mul_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SumRequest)
+	in := new(Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -224,7 +265,7 @@ func _Math_Mul_Handler(srv interface{}, ctx context.Context, dec func(interface{
 		FullMethod: "/math.Math/Mul",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathServer).Mul(ctx, req.(*SumRequest))
+		return srv.(MathServer).Mul(ctx, req.(*Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }

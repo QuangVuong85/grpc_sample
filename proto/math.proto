@@ -3,17 +3,21 @@ syntax = "proto3";
 package math;
 
 service Math {
-  rpc Sum (SumRequest) returns (SumResponse) {}
+  rpc Sum (Request) returns (SumResponse) {}
 
-  rpc Mul (SumRequest) returns (SumResponse) {}
+  rpc Mul (Request) returns (MulResponse) {}
 }
 
 
-message SumRequest {
+message Request {
   int32 a = 1;
   int32 b = 2;
 }
 
 message SumResponse {
   int32 sum = 1;
+}
+
+message MulResponse {
+  int32 mul = 1;
 }
