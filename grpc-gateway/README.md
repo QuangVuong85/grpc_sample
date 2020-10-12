@@ -7,6 +7,7 @@
   - [Test](#Test)
   - [Tree project](#Tree-project)
   - [Ref](#Ref)
+  - [Lib](#L)
 
 ## Overview
 
@@ -170,4 +171,11 @@ curl -X GET "http://localhost:9000/core/serviceB/ping/999"
 ## Ref
 ```link
 https://github.com/grpc-ecosystem/grpc-gateway
+```
+  
+## Lib
+```
+go get -u github.com/gengo/grpc-gateway/protoc-gen-grpc-gateway
+go get -u github.com/gengo/grpc-gateway/protoc-gen-swagger
+go get -u github.com/golang/protobuf/protoc-gen-go
 ```
