@@ -14,10 +14,7 @@
 Building grpc-gateway has caused many difficulties for developers such as the installation of the Golang programming environment, protobuf, how to build,.... There is a simpler, less time-consuming solution that uses `Build grpc-gateway`.
   
 ## Architecture Demo
-
-<p align="center">
-  <img src="./images/model.png"/>
-</p>
+![](./images/model.png)
   
 ## Run
  - Build use script bash:
