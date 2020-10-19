@@ -47,7 +47,7 @@ func connect(user *pb.User) error {
 				break
 			}
 
-			fmt.Printf("%v : %s\n", msg.Id, msg.Content)
+			fmt.Printf("%v : %s\n", msg.User.DisplayName, msg.Content)
 
 		}
 	}(stream)
@@ -71,8 +71,8 @@ func main() {
 
 	client = pb.NewBroadcastClient(conn)
 	user := &pb.User{
-		Id:   hex.EncodeToString(id[:]),
-		Name: *name,
+		Id:          hex.EncodeToString(id[:]),
+		DisplayName: *name,
 	}
 
 	connect(user)
@@ -85,6 +85,7 @@ func main() {
 		for scanner.Scan() {
 			msg := &pb.Message{
 				Id:        user.Id,
+				User:      user,
 				Content:   scanner.Text(),
 				Timestamp: timestamp.String(),
 			}

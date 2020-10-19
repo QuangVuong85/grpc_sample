@@ -9,13 +9,17 @@ import (
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	glog "google.golang.org/grpc/grpclog"
+	"google.golang.org/grpc/grpclog"
 )
 
-var grpcLog glog.LoggerV2
+var (
+	grpcLog    grpclog.LoggerV2
+	colorReset = "\033[0m"
+	colorCyan  = "\033[36m"
+)
 
 func init() {
-	grpcLog = glog.NewLoggerV2(os.Stdout, os.Stdout, os.Stdout)
+	grpcLog = grpclog.NewLoggerV2(os.Stdout, os.Stdout, os.Stdout)
 }
 
 type Connection struct {
@@ -54,7 +58,8 @@ func (s *Server) BroadcastMessage(ctx context.Context, msg *pb.Message) (*pb.Clo
 
 			if conn.active {
 				err := conn.stream.Send(msg)
-				grpcLog.Info("Sending message to: ", conn.stream)
+				grpcLog.Infof("Sending message "+colorCyan+"%s"+colorReset+" to user "+colorCyan+"%s"+colorReset,
+					msg.Id, conn.id)
 
 				if err != nil {
 					grpcLog.Errorf("Error with Stream: %v - Error: %v", conn.stream, err)
@@ -63,7 +68,6 @@ func (s *Server) BroadcastMessage(ctx context.Context, msg *pb.Message) (*pb.Clo
 				}
 			}
 		}(msg, conn)
-
 	}
 
 	go func() {
